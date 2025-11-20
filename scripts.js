@@ -1,10 +1,18 @@
-
 function generateNumber() {
-    const min = Number(document.querySelector('.input-min').value); // Convertido explicitamente para número
-    const max = Number(document.querySelector('.input-max').value); // Convertido explicitamente para número
+    const min = Number(document.querySelector('.input-min').value);
+    const max = Number(document.querySelector('.input-max').value);
 
-    // Garante que min e max sejam inteiros para o cálculo
-    const result = Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) + 1)) + Math.ceil(min);
+    if (isNaN(min) || isNaN(max)) {
+        document.querySelector('.resultado').innerText = "Preencha os dois números!";
+        return;
+    }
 
-    console.log(result);
+    if (min > max) {
+        document.querySelector('.resultado').innerText = "O número inicial deve ser menor que o final!";
+        return;
+    }
+
+    const result = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    document.querySelector('.resultado').innerText = `Número sorteado: ${result}`;
 }
